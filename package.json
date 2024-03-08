@@ -1,0 +1,15 @@
+{
+  "name": "paginated-search",
+  "version": "1.0.0",
+  "description": "example code for searching with pagination",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "djboulia@charitynavigator.org",
+  "license": "ISC",
+  "dependencies": {
+    "@apollo/client": "^3.9.6"
+  }
+}
