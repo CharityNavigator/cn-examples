@@ -46,10 +46,9 @@ async function run() {
     searchFaceted = await getNextPage(query, page, PAGE_SIZE);
     results = results.concat(searchFaceted.results);
     console.log(results.length, " results so far"); 
-    process.exit(0);
   }
 
-  console.log("results: ", results);
+  //console.log("results: ", results);
 }
 
 run();
