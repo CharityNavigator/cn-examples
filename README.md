@@ -17,6 +17,7 @@ API_KEY=xxx
 To run the script type:
 
 ```
+npm i
 npm start
 ```
 
