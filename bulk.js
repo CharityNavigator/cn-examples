@@ -2,20 +2,20 @@
 // calls the bulk graph endpoint and will keep calling the graph
 // until all results are returned.  writes the results to a csv file
 //
-const { apiBulkRatings } = require("./lib/cnapi");
+const { apiBulkNonprofits } = require("./lib/cnapi");
 const { newCSVFile } = require("./lib/csv");
 
 async function getNext(searchParams, afterEin, resultSize) {
   const query = { ...searchParams, afterEin, resultSize };
 
-  const searchResults = await apiBulkRatings(query);
+  const searchResults = await apiBulkNonprofits(query);
   console.log("searchResults: ", searchResults);
-  const bulkRatings = searchResults.data?.bulkRatings;
-  return bulkRatings;
+  const bulkNonprofits = searchResults.data?.bulkNonprofits;
+  return bulkNonprofits;
 }
 
-function hasMoreResults(bulkRatings) {
-  const { requestSize, resultSize } = bulkRatings;
+function hasMoreResults(bulkNonprofits) {
+  const { requestSize, resultSize } = bulkNonprofits;
 
   console.log("request size: ", requestSize, "result size: ", resultSize);
   if (requestSize !== resultSize) {
@@ -28,8 +28,8 @@ function hasMoreResults(bulkRatings) {
 
 // the bulk api works by passing the last ein from the previous call
 // results will returned starting after that ein
-function getLastEin(bulkRatings) {
-  const results = bulkRatings.results;
+function getLastEin(bulkNonprofits) {
+  const results = bulkNonprofits.results;
 
   const lastEin = results[results.length - 1].ein;
   return lastEin;
@@ -43,7 +43,8 @@ async function run() {
   const query = {
     causes: ["Medical education", "Nursing education", "Health"],
     rating: "1+",
-    states: ["AL", "AK", "FL", "OH", "WY", "WI"],
+    states: ["AK"],
+    // states: ["AL", "AK", "FL", "OH", "WY", "WI"],
   };
 
   const file = await newCSVFile(CSV_FILE);
@@ -51,18 +52,18 @@ async function run() {
   console.log("getting first batch");
 
   let afterEin = "";
-  let bulkRatings = await getNext(query, afterEin, RESULT_SIZE);
-  let results = bulkRatings.results;
+  let bulkNonprofits = await getNext(query, afterEin, RESULT_SIZE);
+  let results = bulkNonprofits.results;
   let total = results.length;
 
   await file.append(results);
 
-  while (hasMoreResults(bulkRatings)) {
-    afterEin = getLastEin(bulkRatings);
+  while (hasMoreResults(bulkNonprofits)) {
+    afterEin = getLastEin(bulkNonprofits);
 
     console.log("getting next batch starting after ", afterEin);
-    bulkRatings = await getNext(query, afterEin, RESULT_SIZE);
-    results = bulkRatings.results;
+    bulkNonprofits = await getNext(query, afterEin, RESULT_SIZE);
+    results = bulkNonprofits.results;
     total += results.length;
     console.log(total, " results so far");
     await file.append(results);

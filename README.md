@@ -36,7 +36,7 @@ npm start
 
 This will run index.js which is the main entry point of the example. It sets a few filters and then calls the search function to retrieve the first page of results. It then calls the search function again with the next page token to retrieve the next page of results. After completion, the result set is written to the console.
 
-### BulkRatings
+### BulkNonprofits
 
 To run the bulk ratings example, you will need a CUSTOMER_API_KEY defined in the environmnet:
 
