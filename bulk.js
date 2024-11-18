@@ -43,8 +43,7 @@ async function run() {
   const query = {
     causes: ["Medical education", "Nursing education", "Health"],
     rating: "1+",
-    states: ["AK"],
-    // states: ["AL", "AK", "FL", "OH", "WY", "WI"],
+    states: ["AL", "AK", "FL", "OH", "WY", "WI"],
   };
 
   const file = await newCSVFile(CSV_FILE);
