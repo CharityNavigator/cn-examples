@@ -21,7 +21,7 @@ To authenticate API requests, include a header labeled `Authorization` and set i
 
 ## API Search Example with Pagination
 
-This example uses the Charity Navigator API publicSearchFaceted endpoint to search
+This example uses the Charity Navigator API `publicSearchFaceted` endpoint to search
 for nonprofits with filters, using pagination to retrieve all results
 
 ### Query the publicly available dataset
@@ -37,7 +37,7 @@ npm i
 npm start
 ```
 
-This will run index.js which is the main entry point of the example. It sets a few filters and then calls the search function to retrieve the first page of results. It then calls the search function again with the next page token to retrieve the next page of results. After completion, the result set is written to the console.
+This will run `index.js` which is the main entry point of the example. It sets a few filters and then calls the search function to retrieve the first page of results. It then calls the search function again with the next page token to retrieve the next page of results. After completion, the result set is written to the console.
 
 ## API bulk nonprofit data
 
@@ -49,4 +49,4 @@ This will run index.js which is the main entry point of the example. It sets a f
 node bulk.js
 ```
 
-This script shows an example of loading bulk data with filters applied. It writes the contents of the bulk data to a CSV file.
+This script shows an example of loading bulk data with filters applied. It suports pagination and writes the contents of the bulk data to a `CSV` file.
