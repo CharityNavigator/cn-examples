@@ -1,52 +1,51 @@
 # Accessing Charity Navigator’s Data API
 
-### Step 1: Create an Account through Charity Navigator’s API Developer Portal
+### Create an Account through Charity Navigator’s API Developer Portal
 
-1. Visit Charity Navigator’s developer portal, hosted on Stellate, by going to http://data.charitynavigator.org. Follow the “Getting Started” guide to create a developer account.
+1. Visit Charity Navigator’s developer portal, https://developer.charitynavigator.org
 2. After creating your account, you will be provided with an API key. Safeguard this key—it is required for API access.
 3. Once your account is set up, you can begin querying Charity Navigator’s GraphQL API.
 
-### Step 2: Query the publicly available dataset
+### Environment Variables
 
-1. To authenticate API requests, include a header labeled `Stellate-Api-Token` and set its value to your API key for every request.
-2. Your default access includes the `publicSearchFaceted` query, which allows for searching and filtering nonprofits. This query returns essential nonprofit attributes, including their Charity Navigator rating. Below is a fully functional example to get started.
+You will need to define the following environment variables:
+
+```bash
+API_URL=https://api.charitynavigator.org/graphql
+API_KEY=xxx
+```
+
+Use the API key obtained from the Charity Navigator API Developer Portal
+
+To authenticate API requests, include a header labeled `Authorization` and set its value to your API key for every request.
 
 ## API Search Example with Pagination
 
 This example uses the Charity Navigator API publicSearchFaceted endpoint to search
 for nonprofits with filters, using pagination to retrieve all results
 
-### Environment Variables
+### Query the publicly available dataset
 
-You will need to define the following environment variables:
-
-```
-API_URL=https://data.charitynavigator.org/graphql
-API_KEY=xxx
-```
+Your default access includes the `publicSearchFaceted` query, which allows for searching and filtering nonprofits. This query returns essential nonprofit attributes, including their Charity Navigator rating. Below is a fully functional example to get started.
 
 ### Usage
 
 To run the script type:
 
-```
+```bash
 npm i
 npm start
 ```
 
 This will run index.js which is the main entry point of the example. It sets a few filters and then calls the search function to retrieve the first page of results. It then calls the search function again with the next page token to retrieve the next page of results. After completion, the result set is written to the console.
 
-### BulkNonprofits
+## API bulk nonprofit data
 
-To run the bulk ratings example, you will need a CUSTOMER_API_KEY defined in the environmnet:
+`bulk.js` provides an example of using the `BulkNonprofits` endpoint.
 
-```
-API_CUSTOMER_KEY=1234
-```
+### Usage
 
-This neesd to be a valid customer key with access the bulk data endpoint. To run the script type:
-
-```
+```bash
 node bulk.js
 ```
 
