@@ -1,5 +1,22 @@
 # Accessing Charity Navigator’s Data API
 
+## Modifications to produce a bulk CSV
+
+```bash
+|-- README.md
+|-- bulk.js
+|-- lib
+    |-- cnapi.js
+    |-- csv.js
+    |-- query.js
+```
+
+- README.md - this file
+- bulk.js - Changed the query on line 43 to comment out filters for cause/states and just return all nonprofits with at least 1 star
+- lib/cnapi.js - added auth key
+- lib/csv.js - updated the csv output to include more fields
+- lib/query.js - added org size field to returned query results
+
 ## Create an Account through Charity Navigator’s API Developer Portal
 
 1. Visit Charity Navigator’s developer [portal](https://developer.charitynavigator.org)
@@ -51,7 +68,6 @@ query PublicSearchFaceted(
   $c3: Boolean!
   $result_size: Int!
   $from: Int!
-  $beacons: [String!]!
   $advisories: [String!]!
   $orderBy: String!
 ) {
@@ -64,7 +80,6 @@ query PublicSearchFaceted(
     c3: $c3
     result_size: $result_size
     from: $from
-    beacons: $beacons
     advisories: $advisories
     order_by: $orderBy
   ) {
@@ -81,7 +96,7 @@ query PublicSearchFaceted(
       encompass_score
       encompass_star_rating
       encompass_publication_date
-      cause
+      causes
       street
       street2
       city
@@ -115,7 +130,6 @@ query BulkNonprofits(
   $causes: [String!]!
   $ratings: [String!]!
   $c3: Boolean!
-  $beacons: [String!]!
   $alerts: [String!]!
   $resultSize: Int!
   $afterEin: String!
@@ -126,7 +140,6 @@ query BulkNonprofits(
     causes: $causes
     ratings: $ratings
     c3: $c3
-    beacons: $beacons
     alerts: $alerts
     resultSize: $resultSize
     afterEin: $afterEin
@@ -142,7 +155,7 @@ query BulkNonprofits(
       encompass_score
       encompass_star_rating
       encompass_publication_date
-      cause
+      causes
       street
       street2
       city

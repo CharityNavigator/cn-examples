@@ -41,9 +41,9 @@ async function run() {
 
   // set query filters (if any) here. no filters retrieves all results
   const query = {
-    causes: ["Medical education", "Nursing education", "Health"],
+    // causes: ["Medical education", "Nursing education", "Health"],
     rating: "1+",
-    states: ["AL", "AK", "FL", "OH", "WY", "WI"],
+    // states: ["AL", "AK", "FL", "OH", "WY", "WI"],
   };
 
   const file = await newCSVFile(CSV_FILE);
