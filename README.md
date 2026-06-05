@@ -1,6 +1,6 @@
 # Accessing Charity Navigator’s Data API
 
-## Modifications to produce a bulk CSV for Giving Compass
+## Modifications to produce a bulk CSV
 
 ```bash
 |-- README.md
@@ -14,7 +14,7 @@
 - README.md - this file
 - bulk.js - Changed the query on line 43 to comment out filters for cause/states and just return all nonprofits with at least 1 star
 - lib/cnapi.js - added auth key
-- lib/csv.js - updated the csv output to include Giving Compass required fields
+- lib/csv.js - updated the csv output to include more fields
 - lib/query.js - added org size field to returned query results
 
 ## Create an Account through Charity Navigator’s API Developer Portal
